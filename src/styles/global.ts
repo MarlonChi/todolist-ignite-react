@@ -22,6 +22,7 @@ ${({ theme }) => css`
     font-family: "Inter", sans-serif;
     font-size: 1.6rem;
     background: ${theme.colors["gray-600"]};
+    color: ${theme.colors["gray-300"]};
     height: 100vh;
     width: 100vw;
   }
