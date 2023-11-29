@@ -1,11 +1,13 @@
-import { GlobalStyle } from "./styles/global";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "./styles/global";
+import theme from "./styles/themes/theme";
 
 function App() {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       Ignite ToDo List
-    </div>
+    </ThemeProvider>
   );
 }
 
