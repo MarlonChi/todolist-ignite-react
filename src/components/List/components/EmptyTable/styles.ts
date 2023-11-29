@@ -10,6 +10,7 @@ export const EmptyTableContainer = styled.div`
     color: ${theme.colors["gray-300"]};
     font-size: 1.6rem;
     font-style: normal;
+    border-top: 1px solid ${theme.colors["gray-400"]};
 
     h3 {
       font-weight: 700;

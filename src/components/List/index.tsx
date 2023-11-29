@@ -1,4 +1,5 @@
 import { NewTaskForm } from "./components/NewTaskForm";
+import { TaskItem } from "./components/TaskItem";
 
 import * as S from "./styles";
 
@@ -17,7 +18,9 @@ export function TaskList() {
             <span>0</span>
           </S.FinishedTasks>
         </S.HeaderList>
-        <S.TasksTable></S.TasksTable>
+        <S.TasksTable>
+          <TaskItem />
+        </S.TasksTable>
       </S.TaskListContainer>
     </S.ListContainer>
   );
