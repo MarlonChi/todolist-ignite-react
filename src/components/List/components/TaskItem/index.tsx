@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Check, Trash } from "phosphor-react";
 
 import { Task } from "../..";
@@ -7,21 +6,17 @@ import * as S from "./styles";
 
 interface TaskItemProps {
   tasks: Task[];
+  handleToggleCheck: any;
 }
 
-export function TaskItem({ tasks }: TaskItemProps) {
-  const [checked, setChecked] = useState<boolean>(false);
-
-  const handleToggleCheck = () => {
-    setChecked(!checked);
-  };
-
+export function TaskItem({ tasks, handleToggleCheck }: TaskItemProps) {
+  console.log(tasks);
   return (
     <>
       {tasks?.map((task: Task) => {
         return (
           <S.TaskItem key={task.id} checked={task.checked}>
-            <div onClick={handleToggleCheck}>
+            <div onClick={() => handleToggleCheck(task.id)}>
               <input type="checkbox" readOnly />
               <S.Checkbox checked={task.checked}>
                 {task.checked && <Check size={12} color="#F2F2F2" />}

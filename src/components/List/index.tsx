@@ -18,6 +18,17 @@ export function TaskList() {
     setTasks([...tasks, data]);
   };
 
+  const handleToggleCheck = (id: number) => {
+    setTasks((prevItems) => {
+      return prevItems.map((item) => {
+        if (item.id === id) {
+          return { ...item, checked: !item.checked };
+        }
+        return item;
+      });
+    });
+  };
+
   return (
     <S.ListContainer>
       <NewTaskForm createNewTask={createNewTask} />
@@ -33,7 +44,11 @@ export function TaskList() {
           </S.FinishedTasks>
         </S.HeaderList>
         <S.TasksTable>
-          {tasks?.length ? <TaskItem tasks={tasks} /> : <EmptyTable />}
+          {tasks?.length ? (
+            <TaskItem tasks={tasks} handleToggleCheck={handleToggleCheck} />
+          ) : (
+            <EmptyTable />
+          )}
         </S.TasksTable>
       </S.TaskListContainer>
     </S.ListContainer>
