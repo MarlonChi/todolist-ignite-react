@@ -6,11 +6,10 @@ import * as S from "./styles";
 
 interface TaskItemProps {
   tasks: Task[];
-  handleToggleCheck: any;
+  handleToggleCheck: (id: number) => void;
 }
 
 export function TaskItem({ tasks, handleToggleCheck }: TaskItemProps) {
-  console.log(tasks);
   return (
     <>
       {tasks?.map((task: Task) => {
