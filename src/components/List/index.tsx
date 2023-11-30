@@ -1,12 +1,26 @@
+import { useState } from "react";
 import { NewTaskForm } from "./components/NewTaskForm";
 import { TaskItem } from "./components/TaskItem";
 
 import * as S from "./styles";
+import { EmptyTable } from "./components/EmptyTable";
+
+export interface Task {
+  id: number;
+  description: string;
+  checked: boolean;
+}
 
 export function TaskList() {
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  const createNewTask = (data: Task) => {
+    setTasks([...tasks, data]);
+  };
+
   return (
     <S.ListContainer>
-      <NewTaskForm />
+      <NewTaskForm createNewTask={createNewTask} />
       <S.TaskListContainer>
         <S.HeaderList>
           <S.CreatedTasks>
@@ -19,7 +33,7 @@ export function TaskList() {
           </S.FinishedTasks>
         </S.HeaderList>
         <S.TasksTable>
-          <TaskItem />
+          {tasks?.length ? <TaskItem tasks={tasks} /> : <EmptyTable />}
         </S.TasksTable>
       </S.TaskListContainer>
     </S.ListContainer>
