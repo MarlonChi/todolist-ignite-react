@@ -25,11 +25,11 @@ export function TaskList() {
         <S.HeaderList>
           <S.CreatedTasks>
             <h4>Tarefas criadas</h4>
-            <span>0</span>
+            <span>{tasks.length}</span>
           </S.CreatedTasks>
           <S.FinishedTasks>
             <h4>Concluídas</h4>
-            <span>0</span>
+            <span>0 de {tasks.length}</span>
           </S.FinishedTasks>
         </S.HeaderList>
         <S.TasksTable>
