@@ -11,7 +11,7 @@ interface NewTaskFormProps {
 export function NewTaskForm({ createNewTask }: NewTaskFormProps) {
   const [description, setDescription] = useState<string>("");
 
-  const handleCreateNewTask = (event: ChangeEvent) => {
+  const handleCreateNewTask = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = {
       id: Date.now(),
