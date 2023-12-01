@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NewTaskForm } from "./components/NewTaskForm";
 import { TaskItem } from "./components/TaskItem";
+import { EmptyTable } from "./components/EmptyTable";
 
 import * as S from "./styles";
-import { EmptyTable } from "./components/EmptyTable";
 
 export interface Task {
   id: number;
@@ -14,8 +14,20 @@ export interface Task {
 export function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("@ignite-todo-list:tasks-1.0.0");
+
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  }, []);
+
   const createNewTask = (data: Task) => {
     setTasks([...tasks, data]);
+    localStorage.setItem(
+      "@ignite-todo-list:tasks-1.0.0",
+      JSON.stringify([...tasks, data])
+    );
   };
 
   const handleToggleCheck = (id: number) => {
