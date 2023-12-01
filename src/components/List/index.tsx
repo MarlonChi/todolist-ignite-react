@@ -20,14 +20,22 @@ export function TaskList() {
 
   const handleToggleCheck = (id: number) => {
     setTasks((prevItems) => {
-      return prevItems.map((item) => {
-        if (item.id === id) {
-          return { ...item, checked: !item.checked };
+      return prevItems.map((task) => {
+        if (task.id === id) {
+          return { ...task, checked: !task.checked };
         }
-        return item;
+        return task;
       });
     });
   };
+
+  const handleRemoveItem = (id: number) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  const numberOfCheckedItems = tasks.filter(
+    (task) => task.checked === true
+  ).length;
 
   return (
     <S.ListContainer>
@@ -40,12 +48,18 @@ export function TaskList() {
           </S.CreatedTasks>
           <S.FinishedTasks>
             <h4>Concluídas</h4>
-            <span>0 de {tasks.length}</span>
+            <span>
+              {numberOfCheckedItems} de {tasks.length}
+            </span>
           </S.FinishedTasks>
         </S.HeaderList>
         <S.TasksTable>
           {tasks?.length ? (
-            <TaskItem tasks={tasks} handleToggleCheck={handleToggleCheck} />
+            <TaskItem
+              tasks={tasks}
+              handleToggleCheck={handleToggleCheck}
+              handleRemoveItem={handleRemoveItem}
+            />
           ) : (
             <EmptyTable />
           )}
